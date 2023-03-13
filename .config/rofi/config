@@ -1,0 +1,2 @@
+#include "/usr/share/rofi/themes//solarized_alternate.theme"
+rofi.theme: /home/stefblg/.config/rofi/themes/spotlight-dark.rasi
