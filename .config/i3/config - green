@@ -1,0 +1,445 @@
+set $up l
+set $down k
+set $left j
+set $right semicolon
+
+#xev view button live
+#bindsym button6 exec xdotool key ctrl+v
+
+
+bindsym $mod+Shift+Alt+left i3-msg move workspace to output left
+bindsym $mod+Shift+Alt+right i3-msg move workspace to output right
+bindsym $mod+Shift+Alt+up i3-msg move workspace to output up
+bindsym $mod+Shift+Alt+down i3-msg move workspace to output down
+
+set $mod Mod4
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+
+for_window [class="[Gnome-pie-.*"] floating enable border normal 0px
+for_window [class="[gnome-pie-.*"] floating enable border normal 0px
+for_window [class="gnome-pie"] floating enable border 0px
+bindsym $mod+Ctrl+Right resize grow width 1 px or 1 ppt
+
+bindsym $mod+Ctrl+Up resize shrink height 1 px or 1 ppt
+
+bindsym $mod+Ctrl+Down resize grow height 1 px or 1 ppt
+
+bindsym $mod+Ctrl+Left resize shrink width 1 px or 1 ppt
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Delete mode "$mode_system"
+
+#================================================== GAPS ==================================================
+#gaps inner 15
+#gaps outer 5
+#############smart_gaps on
+
+
+for_window [class="^.*"] border pixel 3
+
+for_window [class="gnome-pie-465"] $float $border-0px
+for_window [class="gnome-pie-465"] floating enable
+for_window [class="gnome-pie"] floating enable
+
+for_window [class="Pavucontrol"] floating enable$border-0px
+for_window [class="Pidgin"] floating enable
+for_window [class="Transmission-gtk"] floating enable
+for_window [class="Urxvtc"] floating enable
+for_window [class="Urxvt"] floating enable
+for_window [class="Nitrogen"] floating enable
+for_window [class="Skype"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [class="xpad"] floating enable
+for_window [class="dwb"] floating enable
+for_window [class="gnome-system-monitor"] floating enable
+#for_window [class="gnome-pie-465"] floating enable
+
+set  $float      floating    enable
+set  $nofloat    floating    disable
+set  $border-none   border      none
+set  $border-0px    border      normal 0px
+set $border-1px border normal 1px
+
+for_window [class="gnome-pie"] floating enable
+
+for_window [class="gnome-pie"] border pixel 0  
+
+#focus_follows_mouse no
+
+
+
+
+#############gaps inner 15
+#new_float pixel 0
+#new_window normal 4
+
+# Border settings
+hide_edge_borders none
+new_window pixel 3
+#new_window 1pixel
+
+smart_borders on
+
+#smart_borders no_gaps
+
+gaps inner 10
+gaps outer 10
+
+#borders when fullscreened
+smart_gaps yes
+
+
+#================================================== FONTS =================================================
+#font pango:DejaVu Sans Mono 8, Awesome 8 
+
+font pango:System San Francisco Display 13, Awesome 8
+
+#font pango:ProFont for Powerline
+#font pango:Meslo LG M DZ for Powerline Bold Italic 8
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+#================================================== BINDINGS ==============================================
+#==== start a terminal
+bindsym $mod+Return exec i3-sensible-terminal; workspace $ws3
+#bindsym $mod+Return exec xfce4-terminal
+
+#==== kill focused window
+bindsym $mod+Shift+q kill
+
+#==== start dmenu (a program launcher)
+#bindsym $mod+d exec --no-startup-id dmenu_run
+#bindsym $mod+d exec --no-startup-id rofi -show run -config /home/stefblg/.config/rofi/config 
+bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun -hide-scrollbar -show-icons -drun-icon-theme "Papirus"
+#bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun -location 1 -xoffset 10 -yoffset 32 -line-padding 4 -columns 1 -width 20 -lines 10 -padding 25 -hide-scrollbar -show-icons -drun-icon-theme "Papirus" 
+#bindsym $mod+d exec --no-startup-id rofi -show find -modi find:~/.local/share/rofi/finder.sh -config /home/stefblg/.config/rofi/config
+#================================================== SYSTEM BINDINGS ========================================
+bindsym $mod+r mode "resize"
+
+bindsym $mod+t border normal
+bindsym $mod+y border 1pixel
+bindsym $mod+u border none
+
+#=== change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+
+#=== alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+#=== move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+#=== alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+#=== split in horizontal orientation
+bindsym $mod+h split h
+
+#=== split in vertical orientation
+bindsym $mod+v split v
+
+#=== enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+#=== change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+#=== toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+z floating enable, resize set 50 ppt 50 ppt, move position 0 px 0 px
+
+#=== change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+#=== focus the parent container
+bindsym $mod+a focus parent
+
+#=== focus the child container
+#bindsym $mod+a focus child
+
+#=== resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+# Correct handling of floating windows
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="dialog"] floating enable
+for_window [window_role="menu"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [class="com-wolfram-jlink-Reader"] floating enable
+for_window [class="Gifview"] floating enable
+
+#================================================== WORKSTATIONS ==============================================
+set $ws0 "0. Tmp "
+set $ws1 "1. Code "
+set $ws2 "2. Web "
+set $ws3 "3. Terminals "
+set $ws4 "4. Media "
+set $ws5 "5. Files "
+set $ws6 "6. Tmp " 
+set $ws7 "7."
+set $ws8 "8."
+set $ws9 "9."
+set $ws10 "10."
+
+#=== switch to workspace
+bindsym $mod+grave workspace $ws0
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+#bindsym F9 workspace $ws1
+#bindsym F10 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+#bindsym $mod+0 workspace $ws10
+
+#=== move focused container to workspace
+bindsym $mod+Shift+grave move container to workspace $ws0
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+#== Auto start the apps on a specific workstations
+assign [class="Firefox"] $ws2
+assign [class="Chromium"] $ws2
+assign [class="Google-chrome-beta"] $ws2
+assign [class="Xfce4-terminal"] $ws3
+assign [class="Rhythmbox"] $ws4
+#================================================== i3 BAR ====================================================
+set $orange-color d7510d
+set $green-color f3f4f5
+
+set $bg-color 	         #2f343f
+set $inactive-bg-color   #2f343f
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+
+bar {
+  	status_command i3blocks
+        #status_command i3status
+	position top
+	font pango:System San Francisco Display 13, Awesome 8
+	#font pango:ProFont for Powerline
+	#output HDMI1
+	#font pango:Convergence FontAwesome, Icons 9
+  workspace_buttons yes
+tray_output primary
+
+
+#93AE03 greenold
+#f44242 redd
+
+#set $text			#999999		
+#set $background			#131D24
+#set $background2		#131D24
+
+#set $focused-bg			#232D34
+#set $focused-text		#93AE03
+#set $focused-text2		#93AE03
+
+#set $urgent			#B33A3A
+#set $inactive-text-color 	#676E7D
+
+##set $focused-text		#078baf
+##set $focused-text2		#078baf
+
+
+set $text			#999999		
+set $background			#131D24
+set $background2		#131D24
+
+set $focused-bg			#232D34
+set $focused-text		#93AE03
+set $focused-text2		#93AE03
+
+set $urgent			#B33A3A
+set $inactive-text-color 	#676E7D
+
+#set $focused-text		#078baf
+#set $focused-text2		#078baf
+
+	colors {
+	#	setting			outline		bg		text
+		statusline		$text
+		background		$background
+		focused_workspace	$focused-bg	$focused-bg	$focused-text
+		active_workspace	$focused-bg	$focused-bg	$text
+		inactive_workspace	$background	$background	$text
+		urgent_workspace	$text		$text		$urgent
+		}
+
+}
+
+#                           border          background         text                 indicator  		child border 
+client.focused              $focused-text2  $background2       $focused-text2       $focused-text2 	$focused-text2  
+client.unfocused            $background2    $background2       $inactive-text-color $background2  	$background2
+client.focused_inactive     $background2    $background2       $inactive-text-color $background2  	$background2
+client.urgent               $urgent         $background2       $text-color          $background2  	$background2
+client.background                           $background2 
+
+
+#================================================== USER BINDINGS ==============================================
+#== Sreen brightness controls (now xfce4-power-manager take care of that)
+#bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+#bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen 
+
+#bindsym XF86MonBrightnessUp exec /home/stefblg/.config/i3/scripts/light.sh +20
+#bindsym XF86MonBrightnessDown exec /home/stefblg/.config/i3/scripts/light.sh -20
+
+#== PulseAudio controls (now xfce4-volumed take care of it)
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+#== Media player controls
+#bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec  --no-startup-id playerctl next
+bindsym XF86AudioPrev exec  --no-startup-id playerctl previous
+
+#== Config shortcut
+bindsym XF86Launch1 exec --no-startup-id mousepad /home/stefblg/.config/i3/config  
+
+#== Monitor output gui app
+bindsym XF86Display exec --no-startup-id arandr
+# or xfce4-display-settings
+
+#== LOCK COMPUTER
+#bindsym $mod+shift+x exec --no-startup-id  /home/stefblg/.config/i3/lock.sh
+bindsym $mod+shift+x exec --no-startup-id  xflock4
+
+#== KEYBOARD LAYOUTS
+#man xkeyboard-config
+#localectl list-x11-keymap-layouts
+#localectl list-x11-keymap-variants de
+
+exec_always --no-startup-id setxkbmap -layout 'us,rs,rs' -variant  ' ,latin, '
+exec_always --no-startup-id setxkbmap -option 'grp:alt_shift_toggle'
+
+bindsym F1 exec io.elementary.files
+bindsym F2 exec xfce4-terminal
+bindsym $mod+n exec  --no-startup-id nautilus
+#bindsym XF86PowerOff exec python3 /home/stefblg/.config/i3/scripts/logout.py
+bindsym --release $mod+x exec --no-startup-id  scrot -e 'mv $f /tmp/ && gimp /tmp/$f'
+
+
+#bindsym $mod+Alt+1 /home/stefblgl/.config/displayconfig/screen1.sh
+#bindsym $mod+Alt+2 /home/stefblgl/.config/displayconfig/screen2.sh
+#================================================== USER EXEC ==============================================
+#exec_always --no-startup-id compton
+exec_always --no-startup-id setxkbmap -option "caps:swapescape";
+#exec_always feh --no-startup-id --bg-scale /home/stefblg/Pictures/Wallpapers/yos/MainDesktop.png
+exec --no-startup-id xfce4-notifyd
+exec --no-startup-id xfce4-volumed 
+exec xfce4-power-manager
+exec --no-startup-id redshift-gtk
+#exec --no-startup-id firefox
+#exec --no-startup-id systemctl --user start xfce4-notifyd
+
+
+exec --no-startup-id nm-applet
+exec --no-startup-id xfce4-clipman
+exec --no-startup-id blueman-applet
+exec --no-startup-id update-notifier
+#exec --no-startup-id plank
+#exec --no-startup-id volumeicon
+exec --no-startup-id /home/stefblg/.local/bin/dualmonitor
+exec --no-startup-id nitrogen --restore		#moved inside monitor scripts
+
+exec --no-startup-id  xinput set-prop 15 313 1
+
+#================================================== XFCE$ DEAMON ===========================================
+#exec --no-startup-id xfsettingsd --sm-client-disable &
+#================================================== END ====================================================
+
+
+bindsym --release button2 kill
+
+# The middle button and a modifer over any part of the window kills the window
+bindsym --whole-window $mod+button2 kill
+
+# The right button toggles floating
+bindsym button3 floating toggle
+bindsym $mod+button3 floating toggle
+
+# The side buttons move the window around
+bindsym button9 move left
+bindsym button8 move right
+
+
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+#exec_always --no-startup-id xfce4-terminal  --title metask 
+#for_window [title="metask"] floating enable;
+#for_window [title="metask"] move scratchpad; [title="metask"] scratchpad show; move position 200px 22px;  resize grow width 683px; resize  height 300px; move scratchpad
+#dbindsym $mod+o [title="metask"] scratchpad show
+
+
+
+#------------------
+
+
+

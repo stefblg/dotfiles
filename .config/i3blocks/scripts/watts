@@ -1,0 +1,8 @@
+#!/bin/bash
+TYPE="${BLOCK_INSTANCE:wattage}"
+LOCALE_INFO=$(wattage)
+
+if [[ "${LOCALE_INFO}" ]]; then
+  echo "${LOCALE_INFO}"
+  echo ""
+fi
