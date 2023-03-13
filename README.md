@@ -2,9 +2,6 @@
 
 ## Installation
 
-* Separate imports method
-
-1. create a .dotfiles folder, which is used to track dotfiles
 ```
 git init --bare $HOME/.dotfiles
 ```
@@ -24,9 +21,6 @@ dotfiles config --local status.showUntrackedFiles no
 echo "alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.bashrc
 ```
 
-* gitignore method
-..not documented (yet)
-
 ## Usage
 
 ### Separate imports method
@@ -38,18 +32,43 @@ dotfiles add .bashrc
 dotfiles commit -m "Add bashrc"
 dotfiles push
 ```
-[comment]: # (if the active branch is not main)
 ```shell
+#if the active branch is not main)
 dotfiles branch -m main
-```
-[comment]: # (Link to a remote repo)
-```shell
+
+#Link to a remote repo
 dotfiles remote add origin
-```
-[comment]: # (Push to a remote repo)
-```shell
+
+# Push to a remote repo
 dotfiles push origin main
 ```
-### Gitignore method
-[comment]: # (Not documented, yet)
 
+### Gitignore method
+1. Use gitignore; ignore everything but the selected directories
+```shell
+# Ignore everything in repository root 
+/*
+
+# Files to not ignore
+!/.gitignore
+!/some_other_files
+
+# Folder to not ignore
+!/.config/
+```
+
+### Restore on a new build
+1. clone your github repository
+```
+git clone --bare https://github.com/stefblg/dotfiles.git $HOME/.dotfiles
+```
+
+2. define the alias in the current shell scope
+```shell
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+```
+
+3. checkout the actual content from the git repository to your $HOME
+```shell
+dotfiles checkout
+```
