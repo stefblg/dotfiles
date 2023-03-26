@@ -10,11 +10,11 @@
 #
 mpd_host = "192.168.0.26"
 #
-mpd_port = "6608"
+mpd_port = "6600"
 #
-mpd_music_dir = "/home/stefblg/Music/mpdmedia/music"
+mpd_music_dir = "/home/stefblg/Music/mpdmedia/music/"
 #
-#mpd_connection_timeout = "5"
+mpd_connection_timeout = "15"
 
 
 
