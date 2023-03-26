@@ -1,0 +1,32 @@
+####################################################
+## this is example configuration file, copy it to ##
+## ~/.ncmpcpp/config or 			  ##
+## ~/.config/ncmpcpp/config and set up your pref  ##
+####################################################
+
+##### connection settings #####
+
+## set it in order to make tag editor and renaming files work properly
+#
+mpd_host = "192.168.0.26"
+#
+mpd_port = "6608"
+#
+mpd_music_dir = "/home/stefblg/Music/mpdmedia/music"
+#
+#mpd_connection_timeout = "5"
+
+
+
+visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_output_name = "my_fifo"
+visualizer_in_stereo = "yes"
+
+#    visualizer_type - spectrum/ellipse/wave_filled/wave
+#    visualizer_look - Set the visualizer's look (string has to be exactly 2 characters long: first one is for wave and whereas second for frequency spectrum, wave_filled and ellipse).
+
+visualizer_type = "wave" (spectrum/wave)
+visualizer_look = "+|"
+
+
+execute_on_song_change = notify-send "$(mpc --format '%title% \n%artist% - %album%' current)" "Now Playing" 
