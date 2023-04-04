@@ -50,6 +50,11 @@ volume() {
   amixer -D $MIXER get $SCONTROL $(capability)
 }
 
+
+printVolume() {
+	/home/stefblg/.config/dunst/volume_brightness.sh print_volume
+}
+
 format() {
   perl_filter='if (/.*\[(\d+%)\] (\[(-?\d+.\d+dB)\] )?\[(on|off)\]/)'
   perl_filter+='{CORE::say $4 eq "off" ? "MUTE" : "'

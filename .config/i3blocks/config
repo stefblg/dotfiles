@@ -41,6 +41,14 @@ markup=none
 #color=#A6D1FA
 
 ####################################################
+#[currently_playing]
+#command=/home/stefblg/.config/i3blocks/scripts/currently_playing.sh
+#interval=persist
+#separator=true
+#markup=pango
+#align=center
+
+####################################################
 [volume]
 label=VOL
 label=♪
